@@ -1,0 +1,252 @@
+{
+  "formatVersion": 1,
+  "tables": [
+    {
+      "space": "knowledge_meta",
+      "id": "Buildings",
+      "value": {
+        "fetchedAt": "2026-11-11T02:47:19.239Z",
+        "url": "https://stellaris.paradoxwikis.com/Buildings",
+        "revision": null,
+        "revisionReason": "action=raw 不提供修订编号",
+        "applicableVersion": "4.5",
+        "versionTemplates": [
+          "4.5"
+        ],
+        "hash": "c35b21cff4e1bed60cfe13546ed4885fa2d02d1428ce7c3e838da5fa4eb7d9a2",
+        "language": "en",
+        "rawTitle": "Buildings"
+      }
+    },
+    {
+      "space": "knowledge_meta",
+      "id": "Districts",
+      "value": {
+        "fetchedAt": "2026-11-11T02:47:21.896Z",
+        "url": "https://stellaris.paradoxwikis.com/Districts",
+        "revision": null,
+        "revisionReason": "action=raw 不提供修订编号",
+        "applicableVersion": "4.5",
+        "versionTemplates": [
+          "4.5"
+        ],
+        "hash": "8259051ae70988e9a967a9885f6ee4fb3b1ce7cb82dccac7858a517d94734a72",
+        "language": "en",
+        "rawTitle": "Districts"
+      }
+    },
+    {
+      "space": "knowledge_meta",
+      "id": "Economy",
+      "value": {
+        "fetchedAt": "2026-11-11T02:47:15.536Z",
+        "url": "https://stellaris.paradoxwikis.com/Resources",
+        "revision": null,
+        "revisionReason": "action=raw 不提供修订编号",
+        "applicableVersion": "4.5",
+        "versionTemplates": [
+          "4.5"
+        ],
+        "hash": "534b17a9a93ce18104e65356e96cb4fe22bef60e8e61cf16c3887974a3045be8",
+        "language": "en",
+        "rawTitle": "Resources"
+      }
+    },
+    {
+      "space": "knowledge_meta",
+      "id": "Research",
+      "value": {
+        "fetchedAt": "2026-11-11T02:47:13.227Z",
+        "url": "https://stellaris.paradoxwikis.com/Technology",
+        "revision": null,
+        "revisionReason": "action=raw 不提供修订编号",
+        "applicableVersion": "4.5",
+        "versionTemplates": [
+          "4.5"
+        ],
+        "hash": "76dd57bcad90662c8cd9c030907a8539048ccf8be13ff1f1264e5ff063822c79",
+        "language": "en",
+        "rawTitle": "Technology"
+      }
+    },
+    {
+      "space": "knowledge_meta",
+      "id": "Resources",
+      "value": {
+        "fetchedAt": "2026-11-11T02:47:17.125Z",
+        "url": "https://stellaris.paradoxwikis.com/Resources",
+        "revision": null,
+        "revisionReason": "action=raw 不提供修订编号",
+        "applicableVersion": "4.5",
+        "versionTemplates": [
+          "4.5"
+        ],
+        "hash": "534b17a9a93ce18104e65356e96cb4fe22bef60e8e61cf16c3887974a3045be8",
+        "language": "en",
+        "rawTitle": "Resources"
+      }
+    },
+    {
+      "space": "knowledge_meta",
+      "id": "Technology",
+      "value": {
+        "fetchedAt": "2026-11-11T02:47:13.227Z",
+        "url": "https://stellaris.paradoxwikis.com/Technology",
+        "revision": null,
+        "revisionReason": "action=raw 不提供修订编号",
+        "applicableVersion": "4.5",
+        "versionTemplates": [
+          "4.5"
+        ],
+        "hash": "76dd57bcad90662c8cd9c030907a8539048ccf8be13ff1f1264e5ff063822c79",
+        "language": "en",
+        "rawTitle": "Technology"
+      }
+    },
+    {
+      "space": "knowledge_meta",
+      "id": "epoch",
+      "value": 6
+    },
+    {
+      "space": "knowledge_import",
+      "id": "Buildings",
+      "value": {
+        "title": "Buildings",
+        "status": "success",
+        "attempts": 1,
+        "at": "2026-11-11T02:47:19.248Z",
+        "url": "https://stellaris.paradoxwikis.com/Buildings",
+        "hash": "c35b21cff4e1bed60cfe13546ed4885fa2d02d1428ce7c3e838da5fa4eb7d9a2",
+        "revision": null,
+        "applicableVersion": "4.5"
+      }
+    },
+    {
+      "space": "knowledge_import",
+      "id": "Districts",
+      "value": {
+        "title": "Districts",
+        "status": "success",
+        "attempts": 1,
+        "at": "2026-11-11T02:47:21.898Z",
+        "url": "https://stellaris.paradoxwikis.com/Districts",
+        "hash": "8259051ae70988e9a967a9885f6ee4fb3b1ce7cb82dccac7858a517d94734a72",
+        "revision": null,
+        "applicableVersion": "4.5"
+      }
+    },
+    {
+      "space": "knowledge_import",
+      "id": "Economy",
+      "value": {
+        "title": "Economy",
+        "status": "success",
+        "attempts": 1,
+        "at": "2026-11-11T02:47:15.538Z",
+        "url": "https://stellaris.paradoxwikis.com/Resources",
+        "hash": "534b17a9a93ce18104e65356e96cb4fe22bef60e8e61cf16c3887974a3045be8",
+        "revision": null,
+        "applicableVersion": "4.5"
+      }
+    },
+    {
+      "space": "knowledge_import",
+      "id": "Research",
+      "value": {
+        "title": "Research",
+        "status": "success",
+        "attempts": 1,
+        "at": "2026-11-11T02:47:13.237Z",
+        "url": "https://stellaris.paradoxwikis.com/Technology",
+        "hash": "76dd57bcad90662c8cd9c030907a8539048ccf8be13ff1f1264e5ff063822c79",
+        "revision": null,
+        "applicableVersion": "4.5"
+      }
+    },
+    {
+      "space": "knowledge_import",
+      "id": "Resources",
+      "value": {
+        "title": "Resources",
+        "status": "success",
+        "attempts": 1,
+        "at": "2026-11-11T02:47:17.128Z",
+        "url": "https://stellaris.paradoxwikis.com/Resources",
+        "hash": "534b17a9a93ce18104e65356e96cb4fe22bef60e8e61cf16c3887974a3045be8",
+        "revision": null,
+        "applicableVersion": "4.5"
+      }
+    },
+    {
+      "space": "knowledge_import",
+      "id": "Technology",
+      "value": {
+        "title": "Technology",
+        "status": "success",
+        "attempts": 1,
+        "at": "2026-11-11T02:47:10.789Z",
+        "url": "https://stellaris.paradoxwikis.com/Technology",
+        "hash": "76dd57bcad90662c8cd9c030907a8539048ccf8be13ff1f1264e5ff063822c79",
+        "revision": null,
+        "applicableVersion": "4.5"
+      }
+    },
+    {
+      "space": "knowledge",
+      "id": "Buildings",
+      "value": {
+        "id": "wiki_Buildings",
+        "title": "Buildings",
+        "url": "https://stellaris.paradoxwikis.com/Buildings",
+        "revision": null,
+        "applicableVersion": "4.5",
+        "fetchedAt": "2026-11-11T02:47:19.239Z",
+        "text": "building Buildings are structures that can be constructed on a colony, filling the colony's buildings slots. 6 building slots are available on each colony's primary district, and additional building slots are unlocked by district specializations. Buildings may be ruined by orbital bombardment or collateral damage. Buildings that are ruined can be repaired for half of their cost and construction time.\n\n- Building sets\n\nEach building belongs to one or more building sets. A building can only be built in a district that permits one of its building sets and does not exclude any of them, which depends on its specialization. Changing the specialization of a district may change what buildings are supported and the new specialization's tooltip will display which existing buildings will be retained and which ones will be removed.\n- The five general building slots available on all planets, as well as the Urban Expansion specialization, can accept most building sets. The main exceptions are extraction buildings, which can only be built in relevant extraction districts.\n- Most specializations can accept an automation building, which produces extra workforce. There are several types with different building sets, each of which has a planet limit of 1. They affect all jobs of types created by the district and its buildings, even if created by other districts or their buildings.\n- The Civilian Industry specialization can accept buildings relevant to production of consumer goods, as well as rare resource refineries. Similarly the Heavy Industry specialization can accept buildings relevant to production of alloys. Mixed Industry can accept both.\n- Research specializations can accept research buildings relevant to their specialization (all of them if it is a generic Research Enclave). Archives can accept both research and unity buildings, whereas Administrative Hubs can only accept unity buildings.\n- Resource districts can accept relevant resource buildings, including output boosters such as the Energy Grid. Notably, Bio-Reactors are considered agriculture buildings, since they alter Farmer jobs to produce energy. Some specializations can accept others, for example Mineral Research Support (mining district specialization) can also accept an Applied Mechanics Institute.\n- Agrarian Idyll empires can build Agrarian Villages specializations which can accept any \"urban\" buildings, including energy and mineral extraction.\n\nA total of 21 buildings may be built on a colony. By default the primary district specialization always contains six building slots. Resource districts allow an additional three building slots per specialization.\n\n- Capital buildings\n\nIntro\n\n- Unique buildings\n\nUnique buildings are buildings that can only be built a limited number of times per planet or empire, and typically provide effects beyond the creation of jobs. Many of them require the capital to have reached a certain level.\n\n- Housing buildings\n\nHousing buildings come in two levels and increase Housing and Amenities. They are converted if the world is conquered by an empire that uses a different building line.\nTier 1 | Tier 2 | Requirements | Building sets\nBuilding | Housing | Amenities | Upkeep | Cost | Building | Housing | Amenities | Upkeep | Cost\nLuxury Residences | housing add +1500 | amenities add +1500 | energy -2 - time 360 - minerals 400 if settled - alloys 40 if nomadic | Paradise Domes | housing add +3000 | amenities add +3000 - energy -3 - rare crystals -1 - time 480 - rare crystals 50 - minerals 600 if settled - alloys 60 if nomadic - noGestalt Consciousness - noShared Burdens - noHabitat unless: - Void Dwellers or Voidborne - Idyllic Architecture for tier 2 - planetary administration Upgraded capital for tier 2 - Government - Urban - Entertainment - Resort\nCommunal Housing | housing add +2000 | amenities add +2500 | energy -2 - time 360 - minerals 400 if settled - alloys 40 if nomadic | Utopian Communal Housing | housing add +4000 | amenities add +5000 - energy -3 - rare crystals -1 - time 480 - rare crystals 50 - minerals 600 if settled - alloys 60 if nomadic - Shared Burdens - noHabitat unless: - Void Dwellers or Voidborne - Idyllic Architecture for tier 2 - planetary administration Upgraded capital for tier 2\nHive Warren | housing add +1500 | amenities add +1500 | energy -2 - time 360 - minerals 400 if settled - alloys 40 if nomadic | Expanded Warren | housing add +3000 | amenities add +3000 - energy -3 - rare crystals -1 - time 480 - rare crystals 50 - minerals 600 if settled - alloys 60 if nomadic - Hive Mind - Anti-Gravity Engineering for tier 2\nDrone Storage | housing add +1500 | amenities add +1500 | energy -2 - time 360 - minerals 400 if settled - alloys 40 if nomadic | Upgraded Drone Storage | housing add +3000 | amenities add +3000 - energy -3 - rare crystals -1 - time 480 - rare crystals 50 - minerals 600 if settled - alloys 60 if nomadic - Machine Intelligence - Micro-Replicators for tier 2 - administrative array Upgraded capital for tier 2\n\n- Passenger buildings\n\nEmpires with the Forever Cruise origin use a different set of housing buildings that also produce an equal number of First Class Passenger jobs.\nTier | Building | Effects | Upkeep | Cost | Required technology\nI | Passenger Estates - housing +500 Housing - +500 First Class Passengers | energy −2 - time 360 - rare crystals 40\nII | Paradise Dome - housing +1500 Housing - +1500 First Class Passengers - energy −5 - exotic gases −1 - time 480 - rare crystals 60 - exotic gases 50 | Idyllic Architecture\n\n- Law enforcement buildings\n\nLaw enforcement buildings usually come in two levels and provide jobs that reduce crime / deviancy and provide a small amount of defense army defense armies.\nTier | Building | Effects | Upkeep | Cost | Requirements | Building Sets\nI | Precinct Houses | enforcer +200 Enforcer jobs | energy -2 - time 360 - minerals 400 if settled - alloys 40 if nomadic - noCivil Education - noGestalt Consciousness - noThrall-World - Government - Urban\nII | Hall of Judgment | enforcer +500 Enforcer jobs - energy -2 - volatile motes -1 - time 480 - volatile motes 50 - minerals 600 if settled - alloys 60 if nomadic - planetary administration Tier II capital - Colonial Centralization technology - Government - Urban\nI | State Academy - +200 Educator jobs - research +0.1 Research per 100 Civilians - consumer goods +0.25 Consumer Goods Upkeep per 100 Civilians | energy -2 - time 360 - minerals 400 if settled - alloys 40 if nomadic - Civil Education - noThrall-World - Government - Urban\nII | Center of Guidance - +500 Educator jobs - research +0.2 Research per 100 Civilians - consumer goods +0.5 Consumer Goods Upkeep per 100 Civilians - energy -2 - volatile motes -1 - time 480 - volatile motes 50 - minerals 600 if settled - alloys 60 if nomadic - planetary administration Tier II capital - Colonial Centralization technology - Government - Urban\nI | Sentinel Posts | hunter-seeker drone +200 Hunter-Seeker Drone jobs | energy -2 - time 360 - minerals 400 if settled - alloys 40 if nomadic | Gestalt Consciousness - Government - Urban\nI | Overseer Residences - enforcer +200 Slave Overseer jobs - housing add +200 Housing | Energy −1 - time 240 - minerals 200 if settled - volatile motes 20 if nomadic | Thrall-World - Government - Urban\n\n- Military buildings\n\nMilitary buildings provide Soldier jobs which produce defense army defense armies and naval capacity add naval capacity.\nTier | Building | Effects | Upkeep | Cost | Requirements | Building Sets\nI | Stronghold - Soldier {{green|+200}} yes battle thrall - yes Cannot be destroyed by orbital bombardment or collateral damage. | energy −1 - time 240 - minerals 400 if settled - volatile motes 40 if nomadic - noResort World - noWilderness - Government - Fortress\nII | Fortress - Soldier {{green|+400}} yes battle thrall - yes Cannot be destroyed by orbital bombardment or collateral damage. - Provides FTL inhibitor if FTL Inhibition technology has been researched - energy −1 - volatile motes −1 - time 360 - minerals 600 if settled - volatile motes 50 if settled - volatile motes 110 if nomadic - Global Defense Grid technology - planetary administration Tier II capital - Government - Fortress\nI | Bone Garrison | soldier +100 Tamersymbiont | minerals −5 - time 240 - biomass 200 - minerals 600 | Wilderness - Government - Fortress\nII | Bone Fortress - soldier +200 Tamersymbiont - Provides FTL inhibitor if FTL Inhibition technology has been researched - minerals −8 - volatile motes −1 - time 360 - biomass 400 - minerals 800 - volatile motes 50 - Global Defense Grid technology - Hive Core Tier II Capital - Government - Fortress\n\n- Other buildings\n\nBuilding | Effects | Upkeep | Cost | Requirements | Building Sets | DLC\nCommercial Zones - Traders - Traders with Commercial Enterprise tradition | energy −2 - time 360 - minerals 400 if settled - rare crystals 40 if nomadic - noGestalt Consciousness - nolow tech capital Command Center 24 uni Command Center capital - noPenal ",
+        "source": "wiki"
+      }
+    },
+    {
+      "space": "knowledge",
+      "id": "Districts",
+      "value": {
+        "id": "wiki_Districts",
+        "title": "Districts",
+        "url": "https://stellaris.paradoxwikis.com/Districts",
+        "revision": null,
+        "applicableVersion": "4.5",
+        "fetchedAt": "2026-11-11T02:47:21.896Z",
+        "text": "district Districts represent large areas of development on a planet dedicated towards a particular purpose. Each world can support up to four district sets: a primary district and three secondary district sets. The primary district can have 2 specializations and the secondary districts can only have 1 specialization each. Each district shows a number of district slots that can be in one of 4 states; built, available, blocked or unavailable.\n\nThe total number of districts that can be built on a planet is limited by the number of district slots, the base number of which is equal to the colony's planet size, which may then be modified by planetary features, blockers, planet modifiers, or traditions. Effects of each district set stack with each district built, and contribute to the total district effect. The number of mining, generator, and agriculture district slots is further constrained by the deposit features on the planet. Each district increases empire size by a default amount of 0.5.\n\n- Primary districts\n\nEach planet has a primary district that can have 2 specializations. The primary district type depends on empire and planet class and will be converted if the world is terraformed or conquered by an empire which uses a different primary district. The number of districts that can be built is limited only by the number of free district slots on the world. The last primary district on the planet cannot be demolished or replaced.\nDistrict | Effects | Upkeep | Cost | Requirements\ncity government City District These dense urban centers provide large amounts of housing and office space for clerical workers. - housing add +1000 Housing - housing add +100 with prosperity Public Works Division iconify - housing add +100 with Weather Control Systems - housing add +200 with Anti-Gravity Engineering (noAgrarian Idyll) - housing add −200 if Agrarian Idyll | energy −2 - time 480 - minerals 500 | Individualist\nnexus government Central Nexus Centralized districts where drones are serviced and repaired before they are deployed to their work assignments. - housing add +1000 Housing - housing add +100 with prosperity Optimized Nexus iconify - housing add +100 with Weather Control Systems - housing add +100 with Anti-Gravity Engineering | energy −2 - time 480 - minerals 500 | Machine Intelligence\nhive government Hive Cluster These towering spires are where the drones gather when not working to rejuvenate and consume nutrients. - housing add +1200 Housing - housing add +100 with prosperity Extended Hives iconify - housing add +100 with Weather Control Systems - housing add +100 with Anti-Gravity Engineering - housing add +600 if Hive World | energy −2 - time 480 - minerals 500 - Hive Mind - noWilderness\ncommunal biomes government Communal Biome These lush groves provide shelter to symbionts who simultaneously form and depend on the Wilderness. - housing add +100 Housing - housing add +50 with prosperity Extended Hives icon Subterranean Warrens - housing add +600 if Hive World - defense army +1 Defense Armies with domination Imperious Architecture icon Interspecies Pheromone Compatibility | energy −2 - time 480 - minerals 500 - biomass 50 | Wilderness\n\n- Planet class primary districts\n\nThese districts replace the standard primary districts on certain planet classes.\nDistrict | Effects | Jobs | Upkeep | Cost | Requirements\nhab housing government Habitation District A habitat housing district provides comfortable, if compact residences for its population. - housing add +1000 Housing - housing add +100 with prosperity Modular Superstructures iconify - energy −2 - alloys −0.5 - time 360 - alloys 300 | Habitat\narcology housing government Residential Arcology With these special ecumenopolistic city districts, integrated vertical architecture is utilized to maximize population density over land surface area. - housing add +1500 Housing - housing add +300 from prosperity Public Works Division iconify - housing add +300 from Weather Control Systems - housing add +300 from Anti-Gravity Engineering (noAgrarian Idyll) - individualist clerk +300 Clerks 28px ** {{icon|clerk}} {{green|+600}} from {{tradition|virtuality|Productivity Simulations|iconify}} - gestalt consciousness logistic drone +900 Logistic Drones 28px ** {{icon|logistic drone}} {{green|+300}} from {{iconify|Anti-Gravity Engineering}} - {{icon|logistic drone}} {{green|+600}} from {{tradition|virtuality|Productivity Simulations|iconify}} | energy −5 - time 480 - minerals 1000 | Ecumenopolis\ncity government City Segment Urban centers fill this Ring World section, providing large amounts of housing and office space for clerical workers. - housing add +2500 Housing - housing add +500 with prosperity Public Works Division iconify - housing add +500 with Weather Control Systems - housing add +500 with Anti-Gravity Engineering (noAgrarian Idyll) - housing add −500 if Agrarian Idyll - clerk +300 Clerks - clerk +600 from virtuality Productivity Simulations iconify - enforcer +200 Enforcers | energy −5 - time 360 - minerals 1000 - Ring World - Individualist\nhive government Hive Segment Towering spires stretch across this Ring World section for drones to gather when not working to rejuvenate and consume nutrients. - housing add +3000 Housing - housing add +500 with prosperity Extended Hives iconify - housing add +500 with Weather Control Systems - housing add +500 with Anti-Gravity Engineering - logistic drone +1500 Logistic Drones - logistic drone +500 with Anti-Gravity Engineering - synapse drone +200 Synapse Drones | energy −5 - time 360 - minerals 1000 - Ring World - Hive Mind\nnexus government Nexus Segment Efficient districts fill this Ring World section, provide locations for drones to be serviced and repaired before they are deployed to their work assignments. - housing add +2500 Housing - housing add +500 with prosperity Optimized Nexus iconify - housing add +500 with Weather Control Systems - housing add +500 with Anti-Gravity Engineering - logistic drone +1000 Logistic Drones - logistic drone +500 with Anti-Gravity Engineering - logistic drone +1000 from virtuality Productivity Simulations iconify - tech-drone +200 Tech-Drones | energy −5 - time 360 - minerals 1000 - Ring World - Machine Intelligence\nark city government Habitation Decks Vast sections of the ship given over to housing, commerce, and community. The living heart of a civilization in motion. - housing add +2500 Housing - housing add +250 with prosperity Public Works Division iconify - housing add +100 with Weather Control Systems - housing add +200 with Anti-Gravity Engineering (noAgrarian Idyll) - housing add −200 if Agrarian Idyll | energy −2 - time 600 - alloys 250 | nomadic Arkship\n\n- Specialized primary districts\n\nThese districts replace the standard primary districts on specialized planets.\nDistrict | Effects | Jobs | Upkeep | Cost | Requirements\ncity government Prison District Cells, guard towers, high walls, and security checkpoints. All are designed for the containment and rehabilitation of society's detainees. - housing add +300 Housing - housing add +100 with prosperity Public Works Division iconify - housing add +100 with Weather Control Systems - housing add +200 with Anti-Gravity Engineering (noAgrarian Idyll) - housing add −200 if Agrarian Idyll | enforcer +200 Enforcers | energy −2 - time 480 - minerals 500 | Penal Colony\ncity government Slave Domicile District Endless slums of towering, densely packed housing are designed to hold the maximum number of individuals with minimal upkeep. - housing add +1000 Housing - housing add +100 with prosperity Public Works Division iconify - housing add +100 with Weather Control Systems - housing add +200 with Anti-Gravity Engineering (noAgrarian Idyll) - housing add −200 if Agrarian Idyll | enforcer Overseer +200 Overseers | energy −2 - time 480 - minerals 500 | Thrall-World\nresort trade Accomodation District Resorts, casinos, retreats and entertainment; anything one would need for the vacation of their dreams. - housing add +500 Housing - housing add +100 with prosperity Public Works Division iconify - housing add +100 with Weather Control Systems - housing add +200 with Anti-Gravity Engineering (noAgrarian Idyll) - housing add −200 if Agrarian Idyll - resort worker +300 Resort Workers - Pleasure Seekers civic: - entertainer +100 Entertainers | energy −2 - time 480 - minerals 500 | Resort World\n\n- Other primary districts\n\nThese districts replace the standard primary districts in certain circumstances.\nDistrict | Effects | Jobs | Upkeep | Cost | Requirements\norders demesne knights Order's Demesne The Order shall not be limited to any keep or star base! Nay, only with vast open spaces - worlds and systems bountiful with resources and good hunting - can they truly thrive. - housing add +1000 Housing - housing add +100 with prosperity Modular Superstructures iconify - energy −2 - alloys −0.5 - time 360 - alloys 300 | Order's Hall specialization\ncrashed slaver ship government Scavenger S",
+        "source": "wiki"
+      }
+    },
+    {
+      "space": "knowledge",
+      "id": "Resources",
+      "value": {
+        "id": "wiki_Resources",
+        "title": "Resources",
+        "url": "https://stellaris.paradoxwikis.com/Resources",
+        "revision": null,
+        "applicableVersion": "4.5",
+        "fetchedAt": "2026-11-11T02:47:17.125Z",
+        "text": "with four units of research resources and one unit of the very rare Zro resource.]]\n\nIn Stellaris, the economy is based on production and consumption of resources and services, either from a specific planet or throughout the empire. It relies primarily on pops working jobs to produce most resources, with mining or research stations built over space deposits as a secondary source. Certain buildings and other sources can produce resources as well.\n\nResources can vary from fairly common food crops to very rare substances such as dark matter and also abstract concepts such as influence and research.\n\nThere are two kinds of resources: Material and Abstract. In addition, certain empire capacities (e.g. naval capacity) or planetary values (e.g. amenities) are \"produced\" in a similar way to resources. If an empire's stored stockpile for a material resource drops to 0 with negative income, for most material resources it triggers a Shortage situation and for rare and abstract resources, it gives an empire-wide penalty.\n\n- Resource storage capacity\n\nAll resources can be stockpiled. All empires have a 15,000 starting storage capacity for each material resource except trade, which has a 50,000 starting storage capacity. An empire can build resource silo Resource Silos 30 Resource Silos buildings on colonies and Resource Silo buildings on starbases to expand their storage capacity. In addition, when the Galactic Market is founded, all members of the Galactic Community gain 10,000 storage capacity unless the the greater good Universal Prosperity Mandate resolution has been passed, and researching Mega-Engineering adds 20,000 to an empire's storage capacity. When an empire's storage capacity for a resource is reached, any additional production of that resource is simply lost.\n\nFor abstract resources, only influence has a maximum storage capacity: 1,000. Unity and research have unlimited storage capacity; stored research is automatically used when researching a technology or special project, for more see stored research.\n\n- Material resources\n\nMaterial resources are the primary means of developing an empire's infrastructure. Most construction – whether buildings, districts, ships, or other – requires at least one material resource. Additionally, material resources are used for most upkeep, from pops to ships to megastructures and more.\n\nResource deposits the empire does not have the technology to exploit will appear greyed out on map.\n\n- Basic resources\n\nBasic resources are directly gathered from orbital deposits or by jobs from resource districts. Biomass is only available to empires with the Wilderness origin.\nResource | Description\nEnergy credits | energy Energy Credits are stored units of transferrable energy that are essential for all space-faring empires. They are used for upkeep of Ships and Buildings, to clear planetary tile blocker Blockers, and when making deals with others. To increase: - Build district Generator Districts - Build Mining Stations on energy-rich Celestial Objects - Buy on the market fee Market\nMinerals | minerals Minerals cover the basic resources used in construction. They are used to construct planetary Buildings and Civilian Space Stations. They can also be refined into Alloys or Consumer Goods. To increase: - Build district Mining Districts - Build Mining Stations on mineral-rich Celestial Objects - Buy on the market fee Market\nFood | food Food represents the various nutrients required to sustain and grow Pops. To increase: - Build district Agriculture Districts - Buy on the market fee Market Driven Assimilators produce food Food for their pop Cyborg Pops, and Rogue Servitors for their pop Bio-Trophy Pops. Machine Intelligences and Thermophiles generally do not use this resource.\nTrade | trade value Trade represents the everyday economic activity, flow of commerce, and logistics capacity within an empire. It is used for Ship Upkeep, Colony Upkeep, and to buy other resources. To increase: - Construct Buildings with Jobs that produce trade Trade - Build Mining Stations on interstellar trade deposits - Sell resources on the market fee Market\nBiomass | biomass Biomass is the raw organic potential generated by biological activity across the worlds of Owned Systems. It is used for constructing planetary Buildings and terraforming new colonies. To increase: - Grow more Pops - Build building Cradle of Rebirth\nOperational Reserves | operational reserves Operational Reserves for nomadic Nomadic Empires are a combined view of Minerals and Energy Credits. There is still income and upkeep of minerals Minerals and energy Energy Credits, but managed as a Situation. One point of Operational Reserves is equal to one minerals Mineral or one energy Energy Credit. One point of Operational Reserve Capacity has a base value of 15000. Each Arkship we own increases it by: Tier I: 5000 Tier II: 7500 Tier III: 10000 Civilian Arkships grant an additional per 2500 Tier. The Stages of the situation affect the empire's Arkships in different ways, and Approaches can be selected to conserve resources or burn through them for higher productivity. Minerals and Energy Credits can be bought on the market fee Market, but not sold.\n\n- Advanced resources\n\nAdvanced resources are produced by jobs which refine them from minerals. Gestalt Consciousness empires do not use or produce consumer goods unless they have the Rogue Servitor or Obsessional Directive civic or are paying some monthly expense of the resource (for instance paying contribution to a subject or overlord).\n\nResource | Description\nAlloys | alloys Alloys are advanced resources with significant military applications. Among other things, they are used to construct Utility Ships, Military Ships, Starbases, and Megastructures. To increase: - Build Mixed Industry or Heavy Industry - Build building Alloy Foundries - Buy on the market fee Market\nConsumer Goods | consumer goods Consumer Goods are an advanced resource that include the various gadgets, luxuries, and equipment necessary to give Pops a good life. To increase: - Build Mixed Industry or Civilian Industry - Build building Civilian Industries - Buy on the market fee Market Some Jobs require these to be performed, such as Researcher or Priest. Machine Intelligences with an Obsessional Directive produce consumer goods Consumer Goods, as do Rogue Servitors for their pop Bio-Trophy Pops. Hive Minds do not use this resource. Machine Intelligences generally do not use this resource.\n\n- Strategic resources\n\nStrategic resources are specialized resources required to both build and maintain advanced buildings and ship components. They are harder to obtain than the common basic and advanced resources and are therefore also much more highly valued. Strategic resources can be obtained by either extracting them from natural space or planetary deposits or manufacturing them synthetically. Natural strategic resource deposits are always visible but requires specific technologies to exploit. Synthetic versions are produced from minerals, albeit at a steep price. All strategic resources can also be manufactured from Fallen Empires' Dimensional Fabricator buildings.\nResource | Main uses | Requirements (either) | Major source | Description\nExotic Gases | * {{icon|damage}} Advanced plasma weapon components - {{icon|shield}} Advanced shield components - {{icon|edict}} Strategic resource edicts type= {{icon|building}} Advanced buildings cost and upkeep body= - Cyto-Revitalization Center - Hall of Judgement - Energy Nexus - Advanced research buildings - Hyper-Entertainment Forums - {{icon|Corporate}} Executive Retreat - {{icon|Rogue Servitor}} Organic Paradise - {{icon split|Idyllic Bloom|Idyllic Bloom Hive}} Gaia Seeders | Exotic Gas Extraction Exotic Gas Refining Nomadic | * {{icon|building}} Exotic Gas Refineries - Planetary features - Nebula Refinery - Gas giant deposits - Toxic world deposits | Rare and exotic gases with a variety of uses, particularly in the operation of advanced energy-based weaponry and force fields. Some of the gases can also be used as starship fuel or even as recreational drugs.\nRare Crystals | * {{icon|damage}} Advanced laser weapon components - {{icon|health}} Advanced hull components - {{icon|edict}} Strategic resource edicts type= {{icon|building}} Advanced buildings cost and upkeep body= - Advanced consumer goods buildings - Commerce Megaplexes - Advanced housing buildings - Advanced unity buildings - {{icon|Corporate}} Xeno-Outreach Agency | Rare Crystal Mining Rare Crystal Manufacturing Nomadic | * {{icon|building}} Synthetic Crystal Plants - Planetary features - Ice asteroid deposits - Frozen world deposits | These crystals have properties that make them extremely effective at focusing laser beams, and they are also a critical component in most advanced electronics. In addition, many cultures treasure them as decorations and adornments.\nVolatile Motes | * {{icon|damage}} Advanced kinetic and missile weapon components - {{icon|edict",
+        "source": "wiki"
+      }
+    },
+    {
+      "space": "knowledge",
+      "id": "Technology",
+      "value": {
+        "id": "wiki_Technology",
+        "title": "Technology",
+        "url": "https://stellaris.paradoxwikis.com/Technology",
+        "revision": null,
+        "applicableVersion": "4.5",
+        "fetchedAt": "2026-11-11T02:47:13.227Z",
+        "text": "Technology in Stellaris is divided into 3 research areas with each area corresponding with one of the research resources: Engineering, Physics and Society. Additionally, each of the ~400 techs belongs to one of 13 subcategories divided between the areas (most appearing pre-dominantly in one area though not exclusively).\n\nThe user interaction aspect utilizes a card shuffle approach rather than a traditional tech tree presentation, thereby introducing an element of semi-randomness into the system.\n\nEach technology has a base cost which is modified by \"Technology and Tradition Cost\" (from galaxy settings set when starting a new game) and by empire size (the research cost is increased by 0.2% for each point of empire size above 100).\n\n- Research areas & fields\n\nThere are three different main research areas in-game, with each area corresponding with one of the research resources. Additionally, each research area has multiple subcategories, for a total of 13 such subcategories, and every tech belongs to one of these subcategories.\n\nThe areas and their subcategories are as follows:\n\nPhysics Physics research\ntech fields\n\nSociety Society research\ntech fields\n\nEngineering Engineering research\ntech fields\n\n- Technology cards\n\nAlthough the underlying technology system is based on the familiar tech tree structure, it does away with the traditional interaction/presentation in favor of the card shuffle approach. This injects a semi-random element into research, making it somewhat less predictable as well as less linear.\n\nWhenever the player is prompted to initiate a research project, the game gives them a \"hand of cards\" consisting of a semi-random selection of technologies available for research, which are picked randomly from a hidden \"deck of cards\" consisting of all valid research options that can appear. A new hand of cards will be drawn whenever a research project is completed, and its technology researched.\n\nTechnologies are divided into 6 tiers (T0 to T5) of advancement. Higher tier technologies require obtaining a certain number of technologies from the preceding tier in the same area of research (set at 6 for all tiers) before they become available as research alternatives.\n\nEvery time the player meets the requirements for a given technology to become obtainable, the technology in question is added into the main \"card deck\" and then has a chance of appearing in the \"card hand\" whenever the game draws a new hand for the player to pick from. There is one basic parameter affecting a tech's chances of appearing in a given card hand:\n\n- Weight – A base value denoting the relative chance (out of all the valid options) of a particular technology to be drawn as an alternative. This may be further modified by an empire's composition (ethics, civics, etc.) and its current state (scientist's traits, past tech, etc.).\n\nTo further increase variation, a technology which appeared as an alternative in the previous card hand has its weight halved in the next draw, resetting after that.\n\nIn general, the more advanced a technology is, the lower its weight (and the higher its cost). Systematically important techs (e.g. terraforming) have a higher weight (typically between 150% and double normal) to help ensure empires get a chance to research them, whereas rare rare technologies have significantly lower weight (typically one-eighth of the normal without the matching expertise).\n\nSome factors increase the weight of certain technologies:\nTechnology draw chance\nTechnology type | Source | Effect\nRare technologies | Scientific Inspiration federation perk and another member has the technology | ×2\nTechnological Ascendancy ascension perk | ×1.5\nDimensional Worship civic | ×1.1\nFTL technologies | Grasp the Void ascension perk | ×1.5\nCloaking technologies | Subterfuge iconify tradition | ×5\nTerraforming technologies | Expansion iconify tradition | ×1.25\nEach tech field (except psionicsarchaeostudies) | expertise blank Expertise trait 24px veteran Scientist traits#Expertise traits Expertise trait for the field - ×1.75 if tier III - ×1.35 if tier II - ×1.25 if tier I\nPsionics field | expertise psionics Expertise: Psionics 24px psi scientist veteran Expertise: Psionics - ×3 if tier III - ×2 if tier II - ×1.5 if tier I\nArchaeostudies field | expertise archaeostudies Expertise: Archaeostudies 24px soc scientist veteran Expertise: Archaeostudies - ×1.35 if tier III - ×1.2 if tier II - ×1.15 if tier I\n\nResearch can be automated, in which case the game picks the cheapest technology available to research unless a rare technology is available for research, in which case the game will pick that. Note that AI players do not operate this way, and instead have a more complex logic for determining what to research.\n\n- Example\n\nLet's assume the game draws a card hand of 3 techs: Armored Torpedoes, Autocannons, and Exotic Gas Refining. Additionally, a councilor scientist has the Expertise: Propulsion 24px Scientist veteran eng 2 Expertise: Propulsion II trait (matching Armored Torpedoes), and the previous card hand had Autocannons as an available option.\n\n\\text{Total weight} = \\text{Armored Torpedoes weight}\\, \\cdot\\, \\text{expertise bonus} +\\, \\text{Autocannons weight}\\, +\\, \\text{Exotic Gas Refining weight}\n\n\\text{Total weight} = 60 \\cdot 1.25\\, +\\, \\frac{75}{2}\\, +\\, 170 = 75 +\\, 37.5 +\\, 170 = 282.5\n\nIf these were the only three valid techs and only one tech were to be drawn, then each tech's chances of being drawn would be 26.5%, 13.3%, and 60.2% respectively (rounded to 1 decimal place). Realistically, there are usually many more valid picks and so the probability of picking any given tech is significantly lower than the figures given here.\n\n- Research alternatives\n\nBy default, each card hand drawn contains a selection of 3 researchable technologies, or research alternatives, but this number can be further increased by a variety of factors. Additionally, some research cards may be gained as permanent alternatives. They appear below the regular alternatives and are distinguished from them by a acquire golden border surrounding the tech card's bezel. These alternatives are usually acquired (along with some partial progress) through post-battle debris analysis, from special projects, anomalies, archaeological site, situations, or other events. These options will always appear as available options when drawing a new card hand and will remain as such until fully researched.\n\nIf need be, it is possible to change an on-going research project at any point – without losing research progress – and continue researching it at a later time. It is important to note, however, that the research progress is only saved as an absolute value and not a percentage, and therefore does not scale with changes to technology costs (for better or for worse). This means that if a technology is left partially researched and the empire's empire size increases before it is fully researched, this will cause the technology's relative progress percentage to decrease as technology cost increases alongside empire size.\n\nUnless a given technology card has appeared as a permanent alternative, there is no guarantee for said technology card to appear again in the next card hand drawn, although it will reappear again eventually through sheer probability after enough new hands have been drawn, and the more research alternatives that each card hand contains, the higher the probability of it appearing as one of them.\n\nThe number of research alternatives per card hand can be increased by the following: Research alternatives\n\n- Research progress\n\nIn general, research time can be summarized as the following formula:\n\n\\text{Research time} = \\sum\\frac{\\text{Research cost} -\\, \\text{Partial research done} }{ \\text{Monthly research progress} }\n\nResearch progress is one of the key elements affecting the time it takes to discover new technologies. It is formulated as follows:\n\n\\text{Monthly research progress} = \\text{Research resource produced}\\, \\cdot\\, \\sum\\text{Research speed modifiers}\\, +\\, \\text{min}[\\text{Research resource stored},\\text{Research resource produced}]\n\nWhile it is possible for the monthly research progress to remain constant during the course of researching a certain technology, it is more than likely to fluctuate – for better or for worse – due to consequences, effects and outcomes of various actions (such as exploration, empire development, expansion, etc.). This, in turn, may increase or decrease the total research time of a given tech.\n\nThe most prominent example of this is empire size. If empire size increases above 100, then every additional point of empire size above that will increase the research cost of technologies by +0,2% per point.\n\n- Example\n\nThe empire from the previous examples (same setup) has just finished debris analysis granting it +10% research progress in Armored Torpedoes along with engineering research (stored research).\n\nThis setup generates the following monthly research progres",
+        "source": "wiki"
+      }
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 # 群星 AI 政府
 
-一个在 Windows 本地运行的外部 AI 政府控制台。玩家通过电脑或手机聊天下令，总统、经济部、军事部和发展参谋规划，行政部门通过 MCP 执行。默认是 **mock 游戏 + mock 模型**，首次启动无需游戏、模型密钥或 Wiki 正文。
+**VPS 接手请先读 [HANDOFF.md](HANDOFF.md)。**
+
+一个在 Windows 本地运行的外部 AI 政府控制台。玩家通过电脑或手机聊天下令，总统、经济部、军事部和发展参谋规划，行政部门通过 MCP 执行。默认是 **mock 游戏 + mock 模型**，首次启动无需游戏或模型密钥；仓库已包含首批四篇真实 Wiki 知识。
 
 ## Windows 启动
 
@@ -41,7 +43,9 @@ npm start
 
 ## 知识库
 
-Teacher MCP 源码在 `vendor/mcp-stellaris`。公开仓库不带Wiki正文；mock界面中的sample仅用于流程演示。默认知识配置指向该服务端，知识库位于 `runtime/knowledge`。在界面主动启动首批资料导入，程序直接处理字节，不消耗模型token。网络挑战或错误HTML不会入库，失败可重试。版本未知时明确标记未知；raw页面不能提供的修订号保存为null及原因。
+Teacher MCP 源码在 `vendor/mcp-stellaris`。上游仓库不带 Wiki 正文，本私有项目已将灌好的四篇正文、索引和来源版本信息保存到 `data/knowledge-seed/`。普通首次启动发现知识库为空时，会自动校验并恢复至配置的知识目录（默认 `runtime/knowledge`），已有知识库不覆盖。也可运行 `npm run knowledge:restore` 手动恢复。数据包说明见 `data/knowledge-seed/README.md`。
+
+首批资料涵盖 Technology、Resources、Buildings、Districts，版本标注 4.5。Research、Economy 两个入口重定向到已保存页面，所以六个标题对应四篇独立正文。样例资料仍明确标注 sample，仅在检索不到真实资料时用于 mock。更多页面可在界面继续导入，过程不消耗模型 token；网络挑战或错误 HTML 不入库。未知修订号保存为 null 和原因。
 
 ## 状态、调试与恢复
 
@@ -76,4 +80,4 @@ npm run test:browser
 npx tsx scripts/import-knowledge.ts Technology Research Resources Economy Buildings Districts
 ```
 
-本次云端已实际导入上述6个标题，重定向后为Technology、Resources、Buildings、Districts四篇正文，均标注4.5。知识正文保存在忽略的runtime目录，**不随GitHub代码分发**；其他电脑/VPS需要自行导入。额外程序导入后应重启应用刷新已有服务索引。
+首批六个标题已导入并以四篇独立正文随本私有仓库分发，其他电脑/VPS首次启动会从 `data/knowledge-seed` 恢复。上面的命令用于重新抓取或扩充页面。额外程序导入后应重启应用刷新已有服务索引。

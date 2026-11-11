@@ -7,17 +7,19 @@ import { SqliteStore,EventBus } from './store.ts';
 import { loadConfig,patchConfig,publicConfig } from './config.ts';
 import { createModels } from './models.ts';
 import { createAuth } from './auth.ts';
+import { restoreKnowledgeSeed } from './knowledge-seed.ts';
 import type {Context, IntelService, Services} from '../contracts/index.ts';
 import { createAdministration } from '../modules/administration/index.ts';
 import { createIntel } from '../modules/state/index.ts';
 import { createGovernment } from '../modules/government/index.ts';
 import { createWebRouter } from '../modules/webui/router.ts';
 
-export async function startApp(options:{port?:number;host?:string;dbPath?:string;serveUi?:boolean;autoTick?:boolean;externalAccess?:boolean}={}) {
+export async function startApp(options:{port?:number;host?:string;dbPath?:string;serveUi?:boolean;autoTick?:boolean;externalAccess?:boolean;seedKnowledge?:boolean}={}) {
  const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
  const store=new SqliteStore(options.dbPath??resolve(root,'runtime/application.sqlite'));
  const bus=new EventBus(store);const config=loadConfig(store);
  if(options.port!==undefined)config.port=options.port;if(options.host)config.host=options.host;
+ if(options.seedKnowledge!==false&&options.dbPath!==':memory:')restoreKnowledgeSeed(store,config);
  const base={store,bus,config};const context:Context={...base,models:createModels(base)};
  let intel:IntelService;const admin=createAdministration(context,()=>intel);intel=createIntel(context,admin);const gov=createGovernment(context,admin,intel);
  const services:Services={context,admin,intel,gov,publicConfig:()=>publicConfig(config),updateConfig:async patch=>{

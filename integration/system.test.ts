@@ -123,3 +123,15 @@ test('临时公开预览强制配对，代理回环地址不免登录且Cookie�
   assert.equal((await fetch(base+'/api/bootstrap',{headers:{Cookie:cookie.split(';')[0]}})).status,200);
  }finally{await app.close();}
 });
+
+test('随仓库知识快照可离线恢复、带版本检索且不覆盖已有资料',async()=>{
+ const {restoreKnowledgeSeed}=await import('../app/knowledge-seed.ts');const {createKnowledge}=await import('../modules/knowledge/index.ts');const {readFile,writeFile,cp,stat}=await import('node:fs/promises');const {resolve}=await import('node:path');
+ const dir=await mkdtemp(join(tmpdir(),'stellaris-seed-'));const target=join(dir,'knowledge');const store=new SqliteStore(':memory:');const config=loadConfig(store);config.knowledgeMcp={...config.knowledgeMcp,command:'',env:{STELLARIS_KB_DIR:target}};const base={store,bus:new EventBus(store),config};let knowledge:ReturnType<typeof createKnowledge>|undefined;
+ try{
+  const restored=restoreKnowledgeSeed(store,config);assert.equal(restored.restored,true);assert.equal(restored.pageCount,4);
+  assert.equal(store.get<any>('knowledge_meta','Technology').applicableVersion,'4.5');assert.equal(store.list('sessions').length,0);assert.equal(store.list('chat').length,0);assert.equal(store.get('system','config'),undefined);
+  knowledge=createKnowledge({...base,models:createModels(base)});const results=await knowledge.search('technology research');assert(results.some(r=>r.title==='Technology'&&r.source==='wiki'&&r.applicableVersion==='4.5'));
+  const page=join(target,'pages/Technology.json');const original=await readFile(page,'utf8');await writeFile(page,original+'\n');assert.equal(restoreKnowledgeSeed(store,config).reason,'existing-pages');assert.equal(await readFile(page,'utf8'),original+'\n');
+  const bad=join(dir,'bad-seed');await cp(resolve('data/knowledge-seed'),bad,{recursive:true});await writeFile(join(bad,'pages/Technology.json'),'tampered');const empty=join(dir,'untouched');assert.throws(()=>restoreKnowledgeSeed(store,config,{seedDir:bad,targetDir:empty}),/校验失败/);await assert.rejects(stat(empty));
+ }finally{await knowledge?.shutdown();store.close();await rm(dir,{recursive:true,force:true});}
+});

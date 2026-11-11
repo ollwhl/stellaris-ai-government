@@ -1,0 +1,86 @@
+{
+  "formatVersion": 1,
+  "createdAt": "2026-11-11T04:18:56.909881+00:00",
+  "teacherCommit": "daf3067081cfaa67c6ee4bafc24b576ec03bcdad",
+  "pageCount": 4,
+  "pages": [
+    {
+      "title": "Buildings",
+      "url": "https://stellaris.paradoxwikis.com/Buildings",
+      "revision": null,
+      "revisionReason": "action=raw 不提供修订编号",
+      "applicableVersion": "4.5",
+      "fetchedAt": "2026-11-11T02:47:19.239Z",
+      "rawContentSha256": "c35b21cff4e1bed60cfe13546ed4885fa2d02d1428ce7c3e838da5fa4eb7d9a2"
+    },
+    {
+      "title": "Districts",
+      "url": "https://stellaris.paradoxwikis.com/Districts",
+      "revision": null,
+      "revisionReason": "action=raw 不提供修订编号",
+      "applicableVersion": "4.5",
+      "fetchedAt": "2026-11-11T02:47:21.896Z",
+      "rawContentSha256": "8259051ae70988e9a967a9885f6ee4fb3b1ce7cb82dccac7858a517d94734a72"
+    },
+    {
+      "title": "Resources",
+      "url": "https://stellaris.paradoxwikis.com/Resources",
+      "revision": null,
+      "revisionReason": "action=raw 不提供修订编号",
+      "applicableVersion": "4.5",
+      "fetchedAt": "2026-11-11T02:47:17.125Z",
+      "rawContentSha256": "534b17a9a93ce18104e65356e96cb4fe22bef60e8e61cf16c3887974a3045be8"
+    },
+    {
+      "title": "Technology",
+      "url": "https://stellaris.paradoxwikis.com/Technology",
+      "revision": null,
+      "revisionReason": "action=raw 不提供修订编号",
+      "applicableVersion": "4.5",
+      "fetchedAt": "2026-11-11T02:47:13.227Z",
+      "rawContentSha256": "76dd57bcad90662c8cd9c030907a8539048ccf8be13ff1f1264e5ff063822c79"
+    }
+  ],
+  "files": [
+    {
+      "path": "meta.json",
+      "bytes": 114,
+      "sha256": "d9a3a0fdb2d8ef908b1a8492700a709743b30426ca534f7e3230c7e5bebf2a26"
+    },
+    {
+      "path": "queue.json",
+      "bytes": 48,
+      "sha256": "0083ab420b622098063ac60a51c04e8790589c1e45677acd87d62ac0a55e87f3"
+    },
+    {
+      "path": "index.json",
+      "bytes": 510927,
+      "sha256": "f610c7763e4a5c53a855b341d53e0675beba4b4edf7ed86375088adc782f2207"
+    },
+    {
+      "path": "pages/Buildings.json",
+      "bytes": 58592,
+      "sha256": "e6bdcd88c39d155a07149aa7485a6cfc09ac14b36b2c3d5ab86adaac71586872"
+    },
+    {
+      "path": "pages/Districts.json",
+      "bytes": 142620,
+      "sha256": "fea6c699122ac0681496b71b9202512a55d0b569c5148f097f32252bdb52ce9f"
+    },
+    {
+      "path": "pages/Resources.json",
+      "bytes": 61103,
+      "sha256": "5f20626fab4cf321035ce2a8ac07fa688e86e681de87cfde05e7c210293856f7"
+    },
+    {
+      "path": "pages/Technology.json",
+      "bytes": 93442,
+      "sha256": "ad9689b1c42457239e80fda6095b97851dc77ea22cb107808e7f22a1eb9f5fe8"
+    },
+    {
+      "path": "metadata.json",
+      "bytes": 43767,
+      "sha256": "5003a2950c0c74a1c62f8aecd220c918b0a769c3319ec9b8efd407e9e9207083"
+    }
+  ]
+}
