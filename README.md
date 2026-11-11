@@ -63,3 +63,17 @@ npm run test:browser
 `npm test` 使用mock与本地兼容模型桩，不访问实际模型或游戏。浏览器检查需要可用Chromium（Linux环境默认 `/usr/bin/chromium`，可用 `CHROMIUM_PATH` 更改）。验证记录见 `integration/VALIDATION.md`。
 
 本项目不承诺此次mock验证代表真实游戏效果，实际DeepSeek、Windows游戏及联机测试留到最后接入阶段。
+
+## 临时公网试用部署
+
+这是额外的预览模式，正式使用仍以本地应用为主。已有自己的 HTTPS 反向代理或隧道入口时，使用 `PUBLIC_PREVIEW=1 HOST=127.0.0.1 PORT=4319 npm start` 启动。此模式即使请求来自回环代理也强制配对，启动时生成24字符随机配对码，Cookie仅通过HTTPS发送。反向代理应保留原始Host，并支持SSE；不要直接把默认本机免配对模式通过代理暴露到公网。公网域名、证书和端口入口由实际部署环境提供，本项目不会假设Codex云端有公网IP。
+
+普通模型请求与Teacher导入现在复用Node的 `HTTP_PROXY` / `HTTPS_PROXY` / `NO_PROXY`，不硬编码代理地址。
+
+首批知识可用以下普通程序导入（无需模型密钥）：
+
+```sh
+npx tsx scripts/import-knowledge.ts Technology Research Resources Economy Buildings Districts
+```
+
+本次云端已实际导入上述6个标题，重定向后为Technology、Resources、Buildings、Districts四篇正文，均标注4.5。知识正文保存在忽略的runtime目录，**不随GitHub代码分发**；其他电脑/VPS需要自行导入。额外程序导入后应重启应用刷新已有服务索引。

@@ -1,3 +1,4 @@
+import './network.ts';
 import express from 'express';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,7 +13,7 @@ import { createIntel } from '../modules/state/index.ts';
 import { createGovernment } from '../modules/government/index.ts';
 import { createWebRouter } from '../modules/webui/router.ts';
 
-export async function startApp(options:{port?:number;host?:string;dbPath?:string;serveUi?:boolean;autoTick?:boolean}={}) {
+export async function startApp(options:{port?:number;host?:string;dbPath?:string;serveUi?:boolean;autoTick?:boolean;externalAccess?:boolean}={}) {
  const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
  const store=new SqliteStore(options.dbPath??resolve(root,'runtime/application.sqlite'));
  const bus=new EventBus(store);const config=loadConfig(store);
@@ -27,8 +28,8 @@ export async function startApp(options:{port?:number;host?:string;dbPath?:string
  }};
  const app=express();app.disable('x-powered-by');app.use(express.json({limit:'2mb'}));
  app.use((_req,res,next)=>{res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');next();});
- const auth=createAuth(context);app.use('/api',auth.sameOrigin);
- app.get('/api/session',(req,res)=>res.json({authenticated:auth.authenticated(req)||!config.pairingRequired,requiresPairing:config.pairingRequired}));
+ const auth=createAuth(context,{externalAccess:options.externalAccess});app.use('/api',auth.sameOrigin);
+ app.get('/api/session',(req,res)=>res.json({authenticated:auth.authenticated(req)||!auth.requiresPairing(),requiresPairing:auth.requiresPairing()}));
  app.post('/api/pair',auth.pair);app.use('/api',auth.requireSession,createWebRouter(services));
  app.use('/api',(_req,res)=>res.status(404).json({error:'接口不存在'}));
  app.use((err:any,_req:any,res:any,_next:any)=>res.status(err.status??400).json({error:err.message??'请求处理失败'}));

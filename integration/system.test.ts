@@ -111,3 +111,15 @@ test('局部战略重评承接已入队建设，完成后不重复支出',async(
   await admin.tick();assert.equal(admin.tasks().find(t=>t.projectId===original.id&&t.status==='waiting')?.projectRevision,rebased.revision);await admin.advanceMock(130);await admin.tick();assert.equal(admin.calls().filter(c=>c.tool==='stellaris_build_building'&&c.origin==='agent').length,1);assert(context.store.list<any>('feedback').some(f=>f.projectId===original.id&&f.projectRevision===rebased.revision&&f.status==='completed'));
  }finally{await app.close();}
 });
+
+test('临时公开预览强制配对，代理回环地址不免登录且Cookie仅HTTPS',async()=>{
+ const app=await startApp({port:0,host:'127.0.0.1',dbPath:':memory:',serveUi:false,autoTick:false,externalAccess:true});
+ const base=`http://127.0.0.1:${app.port}`;
+ try{
+  const session:any=await (await fetch(base+'/api/session')).json();assert.equal(session.authenticated,false);assert.equal(session.requiresPairing,true);
+  assert.equal((await fetch(base+'/api/bootstrap')).status,401);app.services.context.config.pairingRequired=false;assert.equal((await fetch(base+'/api/bootstrap')).status,401);
+  assert(app.pairingCode.length>=24);assert.equal((await fetch(base+'/api/pair',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:'invalid'})})).status,403);
+  const pair=await fetch(base+'/api/pair',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:app.pairingCode})});assert.equal(pair.status,200);const cookie=pair.headers.get('set-cookie')!;assert.match(cookie,/Secure/);assert.match(cookie,/HttpOnly/);
+  assert.equal((await fetch(base+'/api/bootstrap',{headers:{Cookie:cookie.split(';')[0]}})).status,200);
+ }finally{await app.close();}
+});
