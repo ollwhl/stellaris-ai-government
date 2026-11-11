@@ -202,3 +202,17 @@ npm run test:browser
 ## 11. 给VPS Codex的接手提示词
 
 > 请先阅读本仓库AGENTS.md、HANDOFF.md和README.md，接手现有实现，不重建架构。先检查这台VPS及现有服务；8000已有SQLite Web，勿覆盖，网页试用优先8001。使用Node24构建，核对随库四篇真实Wiki的自动恢复与检索。在HTTPS反代后启用PUBLIC_PREVIEW=1和强制配对，提供能访问的试用地址及配对方式。让用户在配置页填写OpenAI兼容模型参数，游戏先保持mock，验证玩家下令到会议、报告、行政操作的闭环。不要以实机接入或桥接逐条复验为开发门槛；不要在聊天、代码或日志中写入SSH口令/模型密钥。明确报告已运行行为、证据、具体阻塞和下一步。
+
+## 12. VPS 续建补充
+
+本轮已在目标主机用 screen 部署应用，公网入口按用户明确要求直接 HTTP 8001（无反代、无证书），启用 PUBLIC_PREVIEW=1 和 PUBLIC_PREVIEW_HTTP=1 保留强制配对；8000 SQLite Web 保持原样。不要重新切回 systemd、SSH转发或证书流程。用户负责网页与业务验收，不在 VPS 运行浏览器自动测试。
+
+工具框架已扩展至随库123条 schema 的分类和 mock 处理器，并新增通用行政项目；不能把静态覆盖等同于123条真实游戏验收。中文全局报告、扩展领域权限、中文预算输入及可保存的政体角色名称已实现。详情见 docs/AUTOMATION.md。服务脚本在 deploy/，本地运行数据和升级前一致性备份在 runtime/（私有、不入Git）。
+
+## 13. 持续舰队任务与战场态势
+
+已新增「战场态势」页、程序采集/变化事件、军事 fleet 项目、行政持续任务与舰队占用/命令恢复机制。实现见 modules/state/battlefield.ts、modules/administration/fleet-missions.ts、modules/control/fleet-{policy,leases}.ts、modules/webui/battlefield.tsx；模拟器见 integrations/game_mcp/battlefield-mock.ts。使用说明和边界见 docs/AUTOMATION.md 末节。玩家指定任务由 GOV 建立，不绕过 EXEC、总开关、军事权限与预算；进攻和紧急跃迁独立授权，默认关闭。保持现有玩家总开关，不为部署自动开启。
+
+本轮仅执行类型检查、生产构建和部署 HTTP 检查，未运行浏览器自动测试或业务验收、未连接游戏、未修改 vendor。用户自行在网页验收。历史章节中的代理、证书和旧测试结论不适用于本轮部署；继续 screen、0.0.0.0:8001、直接 HTTP，保留8000既有服务。
+
+部署补记：最新版本已通过构建并在 screen 的 stellaris-government 中运行，直接公网8001返回200，未配对业务接口401。部署时玩家已将AI开启并设为全局接管，已原样保留（不要按更早记录强制改为关闭）。另修复历史调用按任务查询错选索引的性能问题，及SSE重连全量读取旧事件的问题。

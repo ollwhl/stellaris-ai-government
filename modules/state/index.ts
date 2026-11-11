@@ -1,3 +1,4 @@
+import {BattlefieldCollector} from './battlefield.js';
 import { createHash } from 'node:crypto';
 import { now, uid, type Context, type AdminService, type IntelService, type Snapshot, type Json, type Role } from '../../contracts/index.js';
 import { unwrapMcp } from '../../integrations/knowledge_mcp/index.js';
@@ -9,7 +10,7 @@ function dateNumber(value:string):number|null {const digits=value.match(/\d+/g);
 function signature(value:any) {return createHash('sha256').update(JSON.stringify(value)).digest('hex');}
 
 export function createIntel(ctx:Context,admin:AdminService):IntelService {
-  const knowledge=createKnowledge(ctx);
+  const knowledge=createKnowledge(ctx);const battlefieldCollector=new BattlefieldCollector(ctx);
   let latest=ctx.store.get<Snapshot>('state','latest');
   let refreshing:Promise<Snapshot>|undefined;let lastRefresh=0;let closed=false;
   let lastContent='';
@@ -28,10 +29,10 @@ export function createIntel(ctx:Context,admin:AdminService):IntelService {
         const data=unwrapMcp(call.result);raw[`${tool}:${JSON.stringify(args)}`]={tool,callId:call.id,collectedAt:call.at,source,data};return data;
       } catch(error) {missing.push(`${tool}: ${error instanceof Error?error.message:'读取失败'}`);return undefined;}
     }
-    const [statusResult,researchResult,outlinerResult,fleetsResult]=await Promise.all([
+    const [statusResult,researchResult,outlinerResult,fleetsResult,eventResult,notificationResult,alertResult]=await Promise.all([
       read('stellaris_get_status'),read('stellaris_get_research_state'),
       names.has('stellaris_get_outliner')?read('stellaris_get_outliner'):names.has('stellaris_get_planets')?read('stellaris_get_planets'):Promise.resolve(undefined),
-      read('stellaris_get_fleets')
+      read('stellaris_get_fleets',{include_civilian:true}),read('stellaris_get_active_events'),read('stellaris_get_notifications'),read('stellaris_get_alerts')
     ]);
     const status=object(statusResult?.status||statusResult);
     const research=object(researchResult?.research||researchResult);
@@ -66,8 +67,9 @@ export function createIntel(ctx:Context,admin:AdminService):IntelService {
     const explicitTimeline=status.timeline_id??status.timelineId;
     const timelineId=String(explicitTimeline??(identityChanged||!previous?uid('timeline'):previous.timelineId));
     const sessionId=String(observedSession??(identityChanged||!previous?uid('session'):previous.sessionId));
-    const next:Snapshot={id:uid('snapshot'),version:(latest?.version||0)+1,timelineId,sessionId,at:now(),gameDate,source,
-      global:{...status,source,observedAt:now(),sampling:'工具按各自返回时间采样，非一致性快照',resourceDetails:resourceInput,identity:{empire:empire??null,session:observedSession??null},freshness:{status:statusResult?'fresh':'unavailable',research:researchResult?'fresh':'unavailable',planets:outlinerResult?'fresh':'unavailable',fleets:fleetsResult?'fresh':'unavailable'}},
+    const battlefield=await battlefieldCollector.collect({source,sessionId,timelineId,gameDate,status,fleets,ownFleetsFresh:fleetsResult!==undefined,planets},names,read);
+    const next:Snapshot={battlefield,id:uid('snapshot'),version:(latest?.version||0)+1,timelineId,sessionId,at:now(),gameDate,source,
+      global:{...status,attention:{events:eventResult===undefined?null:array(eventResult,['events','windows','event_windows','pending_events']),notifications:notificationResult===undefined?null:array(notificationResult,['notifications','queue']),alerts:alertResult===undefined?null:array(alertResult,['alerts','active_alerts'])},source,observedAt:now(),sampling:'工具按各自返回时间采样，非一致性快照',resourceDetails:resourceInput,identity:{empire:empire??null,session:observedSession??null},freshness:{status:statusResult?'fresh':'unavailable',research:researchResult?'fresh':'unavailable',planets:outlinerResult?'fresh':'unavailable',fleets:fleetsResult?'fresh':'unavailable'}},
       research:researchResult?research:{},planets,fleets,resources,raw,missing};
     if(closed) return next;
     const content=signature({timelineId,gameDate,source,status,research,planets,fleets,resources,missing});
@@ -92,6 +94,7 @@ export function createIntel(ctx:Context,admin:AdminService):IntelService {
       ctx.bus.emit('state.changed',changes);
       if(previousSnapshot&&previousSnapshot.timelineId!==timelineId)ctx.bus.emit('state.timeline.changed',{previousTimelineId:previousSnapshot.timelineId,timelineId,reason:backwards?'game_date_rewound':identityChanged?'identity_changed':'timeline_changed'});
     }
+    if(battlefield.changes.length)ctx.bus.emit('battlefield.changed',{battlefieldId:battlefield.id,version:battlefield.version,changes:battlefield.changes});
     return structuredClone(next);
   }
   function refresh():Promise<Snapshot> {
@@ -103,7 +106,7 @@ export function createIntel(ctx:Context,admin:AdminService):IntelService {
   function view(role?:Role):Json {
     const s=snapshot();if(!s)return {source:ctx.config.gameMode,available:false,missing:['尚未采集对局状态']};
     const strategy=ctx.store.list<any>('strategies').sort((a,b)=>String(b.at).localeCompare(String(a.at)))[0]??null;
-    const globalReport={snapshotId:s.id,version:s.version,source:s.source,at:s.at,gameDate:s.gameDate,timelineId:s.timelineId,sessionId:s.sessionId,global:s.global,resources:s.resources,missing:s.missing,strategy,permissions:admin.permissions(),reservations:admin.reservations()};
+    const globalReport={battlefield:s.battlefield,snapshotId:s.id,version:s.version,source:s.source,at:s.at,gameDate:s.gameDate,timelineId:s.timelineId,sessionId:s.sessionId,global:s.global,resources:s.resources,missing:s.missing,strategy,permissions:admin.permissions(),reservations:admin.reservations()};
     switch(role) {
       case 'economy':return {...globalReport,department:'economy',planets:s.planets,research:s.research};
       case 'military':return {...globalReport,department:'military',fleets:s.fleets};
