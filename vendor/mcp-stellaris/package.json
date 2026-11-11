@@ -1,0 +1,19 @@
+{
+  "name": "stellaris-wiki-mcp",
+  "version": "1.0.0",
+  "description": "MCP server that answers Stellaris questions from a local copy of the Stellaris Paradox Wiki (BM25 search, glossary, UI hints, learning paths).",
+  "main": "server.js",
+  "bin": {
+    "stellaris-wiki-mcp": "./server.js"
+  },
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/smoke.js"
+  },
+  "keywords": ["stellaris", "mcp", "paradox", "wiki", "knowledge-base"],
+  "license": "MIT"
+}

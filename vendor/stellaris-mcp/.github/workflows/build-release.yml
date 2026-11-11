@@ -1,0 +1,86 @@
+name: Build and release
+
+# Every push to main and every pull request builds the bridge DLL and the MCP server and keeps
+# the packaged zip as a workflow artifact. Pushing a tag v* (for example v0.3.0) also publishes a
+# GitHub Release with that zip.
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write  # creating the release
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      # ---- bridge DLL (MSVC x64; MinHook and nlohmann_json come from FetchContent)
+      - name: Configure
+        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+      - name: Build stellaris_bridge.dll
+        run: cmake --build build --config Release --target stellaris_bridge --parallel
+
+      # ---- MCP server
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: stellaris_mcp_server/package-lock.json
+      - name: Build MCP server
+        working-directory: stellaris_mcp_server
+        run: |
+          npm ci
+          npm run build
+
+      # ---- package: the launcher plugin folder (stl-plugin.json, DLL, defaults\, mcp-server\ without its
+      # dependencies) zipped with its files at the root, plus <zip>.sha256 (scripts/make_plugin.py). A tag
+      # vX.Y.Z gives the manifest version X.Y.Z, which the launcher's updater compares with the latest release
+
+      - name: Package
+        id: package
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $ver = if ($env:GITHUB_REF_TYPE -eq "tag") { $env:GITHUB_REF_NAME } else { "dev-$($env:GITHUB_SHA.Substring(0, 7))" }
+          $name = "stellaris-mcp-$ver"
+          $zip = "package/$name.zip"
+          $pluginVer = if ($env:GITHUB_REF_TYPE -eq "tag") { $ver } else { "0.0.0-dev+$($env:GITHUB_SHA.Substring(0, 7))" }
+          python scripts/make_plugin.py --out "package/stellaris-mcp" --version $pluginVer --zip $zip
+          if ($LASTEXITCODE -ne 0) { throw "make_plugin.py failed" }
+
+          # the DLL only works with the stellaris.exe build its SDK was generated from
+          $ts = (Select-String -Path stellaris_bridge/include/sdk/stellaris_sdk.hpp -Pattern "kExeTimestamp = (0x[0-9A-Fa-f]+)").Matches[0].Groups[1].Value
+          $built = [DateTimeOffset]::FromUnixTimeSeconds([Convert]::ToInt64($ts, 16)).UtcDateTime.ToString("yyyy-MM-dd HH:mm 'UTC'")
+
+          # make_plugin.py wrote $zip.sha256 ("<hex>  <name>"), which the launcher's updater checks
+          "name=$name" >> $env:GITHUB_OUTPUT
+          "zip=$zip" >> $env:GITHUB_OUTPUT
+          "exe_timestamp=$ts" >> $env:GITHUB_OUTPUT
+          "exe_built=$built" >> $env:GITHUB_OUTPUT
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package.outputs.name }}
+          path: |
+            ${{ steps.package.outputs.zip }}
+            ${{ steps.package.outputs.zip }}.sha256
+
+      # ---- release (tags only)
+      - name: Publish release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ steps.package.outputs.zip }}
+            ${{ steps.package.outputs.zip }}.sha256
+          generate_release_notes: true
+          body: |
+            Built for **Stellaris 4.5.2** (Windows x64), `stellaris.exe` PE timestamp `${{ steps.package.outputs.exe_timestamp }}` (${{ steps.package.outputs.exe_built }}).
+            The zip is a Stellaris launcher plugin (DLL plugin spec v2): install it with the launcher, or unpack it into
+            `Documents\Paradox Interactive\Stellaris\plugins\stellaris-mcp\`, and start the game with `stl launch`. The bridge only
+            works with that exact game build; see README.md in the zip for setup.

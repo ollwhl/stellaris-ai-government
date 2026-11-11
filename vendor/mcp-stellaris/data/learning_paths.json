@@ -1,0 +1,104 @@
+{
+  "_comment": "Ordered reading lists returned by stellaris_learning_path. Each is a wiki page title to look up.",
+  "paths": {
+    "absolute-beginner": {
+      "title": "Absolute beginner - your first 50 years",
+      "audience": "Never played / first game / confused by the UI",
+      "steps": [
+        { "page": "Beginner's guide", "why": "Start here - the wiki's own onboarding walkthrough." },
+        { "page": "Interface", "why": "Learn what every panel on your screen is called, so we can talk about it." },
+        { "page": "Resources", "why": "The six resources and what each is actually for." },
+        { "page": "Population", "why": "Pops are the engine of everything. Understand them and the rest follows." },
+        { "page": "Jobs", "why": "Pops work jobs; jobs make resources. This is the core loop." },
+        { "page": "District", "why": "Districts create the jobs. Bigger planet = more districts." },
+        { "page": "Building", "why": "Buildings refine what a planet is good at." },
+        { "page": "Colonization", "why": "How to claim more planets without crashing your economy." },
+        { "page": "Research", "why": "The tech tree basics and why research speed matters more than anything." },
+        { "page": "Survey", "why": "Exploring, anomalies and why you should survey everything." },
+        { "page": "Empire", "why": "Empire Size - the thing that punishes blind expansion." },
+        { "page": "Fleet", "why": "Build a navy before someone else builds one for you." }
+      ]
+    },
+    "economy": {
+      "title": "Economy - from red numbers to a working empire",
+      "audience": "You keep running out of consumer goods / energy / alloys",
+      "steps": [
+        { "page": "Resources", "why": "The resource loop end to end." },
+        { "page": "Jobs", "why": "Which jobs produce what, and their upkeep." },
+        { "page": "Planet designation", "why": "Specialising planets is the single biggest economy win." },
+        { "page": "Trade", "why": "Trade value, routes and piracy - the invisible economy." },
+        { "page": "Market", "why": "Buying and selling without wrecking your prices." },
+        { "page": "Amenities", "why": "Why your pops are unhappy even though they have jobs." },
+        { "page": "Stability", "why": "The multiplier that quietly decides every planet's output." },
+        { "page": "Strata", "why": "Ruler/specialist/worker balance and political weight." },
+        { "page": "Empire", "why": "Empire size: the cost of getting big." },
+        { "page": "Specialization", "why": "Turning a pile of colonies into a real economy." }
+      ]
+    },
+    "warfare": {
+      "title": "Warfare - fleets, ships and winning fights",
+      "audience": "You want to fight, or you keep losing fights",
+      "steps": [
+        { "page": "Warfare", "why": "How war actually works: goals, occupation, exhaustion." },
+        { "page": "Fleet", "why": "Fleet capacity, command limit and fleet management." },
+        { "page": "Ship designer", "why": "Designing ships instead of using auto-design." },
+        { "page": "Weapon components", "why": "Which weapons counter which defences." },
+        { "page": "Ship", "why": "Hull sizes, sections and what each hull is for." },
+        { "page": "Combat", "why": "The space-battle simulation: range, accuracy, evasion." },
+        { "page": "Starbase", "why": "Bastions and FTL inhibitors - how to hold a chokepoint." },
+        { "page": "Army", "why": "You still have to take the planet." },
+        { "page": "Claims", "why": "Why you did not get the system you just conquered." },
+        { "page": "War exhaustion", "why": "Why you got forced into a Status Quo peace." }
+      ]
+    },
+    "expansion": {
+      "title": "Expansion and empire management",
+      "audience": "Growing without collapsing",
+      "steps": [
+        { "page": "Expansion", "why": "Outposts, borders and claiming systems." },
+        { "page": "Empire", "why": "Empire size and administrative efficiency." },
+        { "page": "Sector", "why": "Delegating planet management." },
+        { "page": "Planet designation", "why": "Making each planet good at one thing." },
+        { "page": "Colonization", "why": "When and where to settle." },
+        { "page": "Habitability", "why": "Why your new colony is underperforming." },
+        { "page": "Vassal", "why": "Vassals as a way to grow without empire-size pain." }
+      ]
+    },
+    "midgame": {
+      "title": "Mid-game - traditions, federations and ascension",
+      "audience": "You have a stable empire and 100+ years in",
+      "steps": [
+        { "page": "Traditions", "why": "Which trees to take and in what order." },
+        { "page": "Ascension perk", "why": "The permanent power spikes." },
+        { "page": "Ascension path", "why": "Psionic, cybernetic, synthetic, genetic - pick one." },
+        { "page": "Federation", "why": "Allies that actually matter." },
+        { "page": "Galactic community", "why": "The galactic senate and resolutions." },
+        { "page": "Espionage", "why": "Intel and operations." },
+        { "page": "Megastructure", "why": "The long-term construction goals." }
+      ]
+    },
+    "lategame": {
+      "title": "Late game - crises and megastructures",
+      "audience": "2300+, something terrible is happening",
+      "steps": [
+        { "page": "Crisis", "why": "What the end-game crises are." },
+        { "page": "Megastructure", "why": "Ring worlds, dyson spheres, and how to afford them." },
+        { "page": "Fall", "why": "Fallen empires wake up." },
+        { "page": "Federations", "why": "You cannot beat a crisis alone." },
+        { "page": "Colossus", "why": "Total war and planet-killing." },
+        { "page": "Repeatables", "why": "Where research goes when the tree is done." }
+      ]
+    },
+    "gestalt": {
+      "title": "Gestalt empires (hive mind / machine intelligence)",
+      "audience": "Playing as a hive mind or robots",
+      "steps": [
+        { "page": "Gestalt Consciousness", "why": "The rules change completely." },
+        { "page": "Hive Mind", "why": "Synapse drones, no consumer goods, no factions." },
+        { "page": "Machine Intelligence", "why": "Pop assembly instead of growth." },
+        { "page": "Population", "why": "Assembly vs. growth." },
+        { "page": "Bio-Trophy", "why": "If you are a Rogue Servitor." }
+      ]
+    }
+  }
+}

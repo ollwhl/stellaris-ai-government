@@ -1,0 +1,36 @@
+import type { Context, Json } from '../../contracts/index.js';
+import { now, uid } from '../../contracts/index.js';
+export class MockGame {
+ constructor(private ctx:Context){if(!ctx.store.get('mock','state'))this.save(this.initial());}
+ initial():Json{return {session_id:'mock-session-1',timeline_id:'mock-timeline-1',empire_id:0,empire_name:'曙光共同体',day:0,date:'2200.01.01',paused:true,speed:2,resources:{energy:{stockpile:1200,income:80,expense:55,net:25},minerals:{stockpile:1800,income:90,expense:40,net:50},alloys:{stockpile:600,income:25,expense:15,net:10},consumer_goods:{stockpile:500,income:30,expense:25,net:5},food:{stockpile:800,income:50,expense:40,net:10},unity:{stockpile:300,net:12}},research:{physics:{area:'physics',current:null,candidates:[{key:'tech_physics_1',name:'量子理论',cost:1000,capability:'research'},{key:'tech_fusion_power',name:'聚变能源',cost:1000,capability:'military'}]},society:{area:'society',current:null,candidates:[{key:'tech_society_1',name:'生物多样性研究',cost:1000,capability:'research'},{key:'tech_hydroponics',name:'水培农业',cost:800,capability:'economy'}]},engineering:{area:'engineering',current:null,candidates:[{key:'tech_engineering_1',name:'纳米力学',cost:1000,capability:'research'},{key:'tech_corvettes',name:'护卫舰改良',cost:1000,capability:'military'}]}},planets:[{id:0,name:'曙光',queue:[],buildings:[],buildableBuildings:[{key:'building_research_lab_1',name:'研究实验室',cost:{minerals:400},build_days:90,zone_id:0},{key:'building_foundry_1',name:'合金铸造厂',cost:{minerals:300},build_days:60,zone_id:0},{key:'building_energy_grid',name:'能源电网',cost:{minerals:250},build_days:60,zone_id:0},{key:'building_mineral_purification_plant',name:'矿物提纯厂',cost:{minerals:300},build_days:60,zone_id:0}]}],fleets:[{id:0,name:'第一巡防舰队',power:350,deficit:2,reinforcementCost:{alloys:200},queue:[]}],completedOrders:[],unknownNext:false,failNext:false};}
+ state():Json{return structuredClone(this.ctx.store.get<Json>('mock','state')!);}
+ save(s:Json){this.ctx.store.set('mock','state',s);}
+ async call(name:string,args:Json):Promise<any>{const s=this.state();const area=typeof args.area==='number'?['physics','society','engineering'][args.area]:args.area;let result:any;
+  const planet=()=>{const p=s.planets.find((p:any)=>p.id===args.planet_id);if(!p)throw new Error('星球不存在');return p;};
+  const fleet=()=>{const f=s.fleets.find((f:any)=>f.id===args.fleet_id);if(!f)throw new Error('舰队不存在');return f;};
+  const spend=(cost:Json)=>{for(const[k,v]of Object.entries(cost)){if(!s.resources[k]||s.resources[k].stockpile<Number(v))throw new Error(`资源不足：${k}`);}for(const[k,v]of Object.entries(cost))s.resources[k].stockpile-=Number(v);};
+  const write=!['stellaris_get_status','stellaris_get_research_state','stellaris_get_outliner','stellaris_get_planet_details','stellaris_get_buildable_buildings','stellaris_get_fleets','stellaris_get_active_events','stellaris_get_notifications','stellaris_get_alerts'].includes(name);
+  if(write&&s.failNext){s.failNext=false;this.save(s);throw Object.assign(new Error('模拟的确定性拒绝：命令未执行'),{knownFailure:true});}
+  switch(name){
+   case 'stellaris_get_status':result={...s,research:undefined,planets:undefined,fleets:undefined,source:'mock'};break;
+   case 'stellaris_get_research_state':result={...s.research,areas:Object.values(s.research)};break;
+   case 'stellaris_get_outliner':result={planets:s.planets,fleets:s.fleets};break;
+   case 'stellaris_get_planet_details':result=planet();break;
+   case 'stellaris_get_buildable_buildings':{const p=planet();result={planet_id:p.id,zones:[{zone_id:0,buildable:p.buildableBuildings.filter((b:any)=>!args.building_key||b.key===args.building_key).map((b:any)=>({...b,can_build:Object.entries(b.cost).every(([k,v])=>s.resources[k].stockpile>=Number(v))}))}],buildings:p.buildableBuildings};break;}
+   case 'stellaris_get_fleets':result={fleets:args.fleet_id===undefined?s.fleets:[fleet()]};break;
+   case 'stellaris_get_active_events':result={events:[]};break;
+   case 'stellaris_get_notifications':result={notifications:[]};break;
+   case 'stellaris_get_alerts':result={alerts:[]};break;
+   case 'stellaris_select_research':{const r=s.research[area];if(!r)throw new Error('无效科研领域');const t=r.candidates.find((c:any)=>c.key===args.tech_key);if(!t)throw new Error('科技不在当前候选中');r.current={...t,progress:0,started_day:s.day};result={accepted:true,area,tech_key:t.key};break;}
+   case 'stellaris_build_building':{const p=planet(),b=p.buildableBuildings.find((b:any)=>b.key===args.building_key);if(!b)throw new Error('建筑不在当前可建候选中');spend(b.cost);const order={id:uid('order'),key:b.key,building_key:b.key,remaining_days:b.build_days,started_day:s.day};p.queue.push(order);result={accepted:true,order_id:order.id,planet_id:p.id,cost:b.cost};break;}
+   case 'stellaris_reinforce_fleet':{const f=fleet();if(!f.deficit)throw new Error('舰队没有增援缺口');spend(f.reinforcementCost);const order={id:uid('order'),remaining_days:60,count:f.deficit,started_day:s.day};f.queue.push(order);f.pending_deficit=f.deficit;f.deficit=0;result={accepted:true,order_id:order.id,fleet_id:f.id,cost:f.reinforcementCost};break;}
+   case 'stellaris_set_paused':s.paused=args.paused;result={accepted:true,paused:s.paused};break;
+   case 'stellaris_set_speed':s.speed=args.speed;result={accepted:true,speed:s.speed};break;
+   default:throw new Error('mock 尚未实现该工具的效果');
+  }
+  if(write){const unknown=s.unknownNext;s.unknownNext=false;this.save(s);if(unknown)throw Object.assign(new Error('模拟连接中断：操作结果未知，请先回读'),{unknownResult:true});}
+  return {data:structuredClone(result),raw:{content:[{type:'text',text:JSON.stringify(result)}]},source:'mock'};
+ }
+ advance(days:number){if(!Number.isInteger(days)||days<1||days>3600)throw new Error('推进天数必须为 1 至 3600 的整数');const s=this.state();s.day+=days;s.date=`${2200+Math.floor(s.day/360)}.${String(Math.floor(s.day%360/30)+1).padStart(2,'0')}.${String(s.day%30+1).padStart(2,'0')}`;for(const r of Object.values(s.resources) as any[])r.stockpile=Math.max(0,r.stockpile+r.net*days/30);for(const r of Object.values(s.research) as any[]){if(r.current){r.current.progress=Math.min(1,(r.current.progress??0)+days/120);if(r.current.progress>=1){r.completed=[...(r.completed??[]),r.current.key];r.candidates=r.candidates.filter((x:any)=>x.key!==r.current.key);r.current=null;}}}for(const p of s.planets){for(const q of p.queue)q.remaining_days-=days;const done=p.queue.filter((q:any)=>q.remaining_days<=0);p.buildings.push(...done.map((q:any)=>q.key));s.completedOrders.push(...done);p.queue=p.queue.filter((q:any)=>q.remaining_days>0);}for(const f of s.fleets){for(const q of f.queue)q.remaining_days-=days;const done=f.queue.filter((q:any)=>q.remaining_days<=0);f.power+=done.reduce((n:number,q:any)=>n+q.count*100,0);s.completedOrders.push(...done);f.queue=f.queue.filter((q:any)=>q.remaining_days>0);}this.save(s);return s;}
+ control(patch:Json){let s=this.state();if(patch.reset)s=this.initial();if(patch.resources){for(const[k,v]of Object.entries(patch.resources)){if(!s.resources[k])continue;if(typeof v==='number')s.resources[k].stockpile=v;else if(v&&typeof v==='object')Object.assign(s.resources[k],v);}}for(const k of ['unknownNext','failNext','paused','speed'])if(patch[k]!==undefined)s[k]=patch[k];if(patch.timelineId){s.timeline_id=String(patch.timelineId);}this.save(s);return s;}
+}

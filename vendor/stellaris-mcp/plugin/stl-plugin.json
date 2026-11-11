@@ -1,0 +1,15 @@
+{
+  "schema": 2,
+  "id": "stellaris-mcp",
+  "name": "Stellaris MCP bridge",
+  "version": "0.6.2",
+  "description": "Lets AI agents read and play the game over MCP: reads engine state and posts the game's own commands. The MCP server is in mcp-server\\.",
+  "dll": "stellaris_bridge.dll",
+  "game": { "exe_timestamps": ["0x6AE49C1B"] },
+  "load": { "wait": "window", "delay_ms": 1500 },
+  "config": [
+    { "file": "stellaris_mcp.ini", "default": "defaults/stellaris_mcp.ini", "title": "Stellaris MCP", "substitute": false }
+  ],
+  "update": { "github": "Yidhar/stellaris-mcp", "asset": "stellaris-mcp-*.zip" },
+  "homepage": "https://github.com/Yidhar/stellaris-mcp"
+}

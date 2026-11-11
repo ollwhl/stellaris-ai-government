@@ -1,0 +1,47 @@
+{
+  "_comment": "Title filter applied when expanding the crawl queue from the wiki's full page list. The Stellaris wiki hosts large third-party mod namespaces (Star Trek, Star Wars, Warhammer total conversions) and per-patch changelog pages. Neither teaches vanilla Stellaris, so they are excluded from the crawl. Edit this file and re-run `node scripts/expand_queue.js` to change what gets queued.",
+  "_generated": "2026-08-30 from api.php?action=query&list=allpages&apnamespace=0&apfilterredir=nonredirects",
+
+  "modPrefixes": [
+    "ST NewHorizons",
+    "ST Newhorizons",
+    "STNC Main Page",
+    "Star Trek New Civilisations",
+    "Star Wars Legacy of the Old Republic",
+    "Star Wars New Dawn",
+    "SW Fallen Republic",
+    "SWFR Main Page",
+    "WarhammerTotalConversion",
+    "Galactic Cold War",
+    "Master of Stellaris",
+    "Phi mp balancing",
+    "Hydra's More Everything",
+    "Endless Frontier",
+    "UI Overhaul Dynamic"
+  ],
+
+  "excludeRegex": ["^Patch \\d"],
+
+  "excludeExact": [
+    "Patches",
+    "Contact us",
+    "Main Page/links",
+    "Main Page/news",
+    "Template",
+    "Placeholders",
+    "Stellaris Wiki",
+    "Paradox",
+    "Steam Workshop",
+    "Mods",
+    "Complete Soundtrack",
+    "Maya exporter",
+    "Developer diaries",
+    "ID"
+  ],
+
+  "_notes": [
+    "modPrefixes are matched case-insensitively against the start of a title, so 'ST NewHorizons/Races/Vulcan' is dropped.",
+    "Modding reference pages (Defines, Scopes, Effects, * modding) are KEPT - they document vanilla game data.",
+    "Subpages of vanilla topics (Species/Aquatic, Console commands/...) are KEPT."
+  ]
+}

@@ -1,0 +1,33 @@
+export type Role = 'president' | 'economy' | 'military' | 'development' | 'administration';
+export type Json = Record<string, any>;
+export interface Store { get<T>(space:string,id:string): T|undefined; list<T>(space:string):T[]; set<T>(space:string,id:string,value:T):void; delete(space:string,id:string):void; transaction<T>(fn:()=>T):T; }
+export interface AppEvent { id:string; seq:number; type:string; at:string; traceId?:string; data:any; }
+export interface Bus { emit(type:string,data:any,traceId?:string):AppEvent; subscribe(fn:(event:AppEvent)=>void):()=>void; since(seq:number):AppEvent[]; }
+export interface ModelConfig { id:string; label:string; baseUrl:string; model:string; apiKey:string; timeoutMs:number; maxTokens:number; concurrency:number; mock:boolean; }
+export interface McpConfig { command:string; args:string[]; env:Record<string,string>; }
+export interface AppConfig { host:string; port:number; gameMode:'mock'|'real'; models:ModelConfig[]; roleModels:Partial<Record<Role,string>>; gameMcp:McpConfig; knowledgeMcp:McpConfig; autoTickMs:number; planningDelayMs:number; pairingRequired:boolean; }
+export interface ModelMessage { role:'system'|'user'|'assistant'|'tool'; content:string|null; tool_call_id?:string; tool_calls?:any[]; }
+export interface ModelService { json<T>(role:Role,system:string,input:unknown,fallback:()=>T,traceId?:string):Promise<T>; complete(role:Role,messages:ModelMessage[],tools?:any[],traceId?:string):Promise<{content:string|null;toolCalls:any[]}>; }
+export interface Context { store:Store; bus:Bus; models:ModelService; config:AppConfig; }
+export interface ToolDefinition { name:string; description:string; inputSchema:Json; effect:'read'|'write'|'unknown'; domain:string; supported?:boolean; }
+export interface Snapshot { id:string; version:number; timelineId:string; sessionId:string; at:string; gameDate:string; source:'mock'|'real'; global:Json; research:Json; planets:any[]; fleets:any[]; resources:Record<string,{stockpile:number;net:number}>; raw:Json; missing:string[]; }
+export interface KnowledgeRef { id:string; title:string; url:string; revision:string|null; applicableVersion:string|null; fetchedAt:string; text:string; source:'wiki'|'sample'|'experience'; }
+export interface Strategy { id:string; revision:number; traceId:string; goal:string; priorities:string[]; constraints:Json; budgets:Record<string,number>; contingencies:string[]; validUntil:string; at:string; }
+export type ProjectStatus='proposed'|'ready'|'running'|'waiting'|'blocked'|'completed'|'cancelled';
+export interface Project { id:string; revision:number; strategyId:string; strategyRevision:number; traceId:string; department:Role; title:string; goal:string; kind:'research'|'construction'|'defense'|'generic'; scope:Json; budget:Record<string,number>; priority:number; dependencies:string[]; completion:string; termination:string; status:ProjectStatus; at:string; feedback?:string; }
+export interface DecisionReport { id:string; decisionId:string; role:Role; title:string; summary:string; recommendations:string[]; rationale:string; knowledge:KnowledgeRef[]; projectIds:string[]; at:string; }
+export interface MeetingMessage { id:string; role:Role; kind:'proposal'|'request'|'response'|'ruling'; content:string; at:string; }
+export interface Decision { id:string; meetingId:string; traceId:string; trigger:string; goal:string; status:'running'|'completed'|'failed'|'stale'; at:string; completedAt?:string; snapshot:Snapshot; roleViews:Partial<Record<Role,Json>>; participants:Role[]; messages:MeetingMessage[]; reports:DecisionReport[]; strategy?:Strategy; projectIds:string[]; error?:string; inputPermissionRevision:number; }
+export interface ChatMessage { id:string; role:'user'|'assistant'|'system'; text:string; at:string; traceId?:string; decisionId?:string; }
+export interface Permissions { revision:number; mode:'advice'|'partial'|'global'; stopped:boolean; research:boolean; construction:boolean; military:boolean; pause:boolean; resume:boolean; speed:boolean; debugWrite:boolean; budgets:Record<string,number>; controlledObjects:string[]; pausedDepartments:Role[]; oneTimeProjectIds?:string[]; }
+export interface CallRecord { id:string; traceId:string; taskId?:string; projectId?:string; tool:string; args:Json; origin:'agent'|'debug'|'intel'; status:'submitted'|'accepted'|'observed'|'error'|'unknown'|'denied'; at:string; durationMs:number; result?:any; error?:string; observation?:any; source:'mock'|'real'; annotation?:{verdict:string;note:string}; }
+export interface Task { id:string; projectId:string; projectRevision:number; traceId:string; status:'ready'|'running'|'waiting'|'blocked'|'completed'|'cancelled'|'unknown'; step:string; object?:string; waitCondition?:string; callIds:string[]; retries:number; at:string; feedback?:string; }
+export interface Reservation { id:string; projectId:string; taskId:string; resources:Record<string,number>; status:'reserved'|'submitted'|'spent'|'released'|'unknown'; at:string; }
+export interface ExecutionFeedback { id:string; projectId:string; traceId:string; status:string; reason:string; at:string; projectRevision?:number; }
+export interface AdminService { tools():Promise<ToolDefinition[]>; call(name:string,args:Json,options?:{origin?:'agent'|'debug'|'intel';traceId?:string;projectId?:string;taskId?:string;permissionRevision?:number;debugAuthorized?:boolean}):Promise<CallRecord>; tick():Promise<void>; permissions():Permissions; updatePermissions(patch:Partial<Permissions>):Permissions; tasks():Task[]; calls():CallRecord[]; reservations():Reservation[]; annotate(id:string,verdict:string,note:string):void; advanceMock(days:number):Promise<any>; mockControl(patch:Json):Promise<any>; shutdown():Promise<void>; }
+export interface IntelService { refresh():Promise<Snapshot>; snapshot():Snapshot|undefined; view(role?:Role):Json; searchKnowledge(query:string):Promise<KnowledgeRef[]>; importKnowledge(titles?:string[]):Promise<any>; importStatus():any; shutdown():Promise<void>; }
+export interface GovService { submitGoal(text:string):Promise<{traceId:string;message:ChatMessage}>; tick():Promise<void>; replan(trigger?:string):Promise<void>; decisions():Decision[]; projects():Project[]; strategies():Strategy[]; messages():ChatMessage[]; status():Json; shutdown():Promise<void>; }
+export interface Services { context:Context; admin:AdminService; intel:IntelService; gov:GovService; publicConfig():Json; updateConfig(patch:Json):Promise<Json>; }
+export const now=()=>new Date().toISOString();
+export const uid=(prefix:string)=>`${prefix}_${crypto.randomUUID()}`;
+export const roleNames:Record<Role,string>={president:'总统',economy:'经济部',military:'军事部',development:'发展参谋',administration:'行政部门'};
